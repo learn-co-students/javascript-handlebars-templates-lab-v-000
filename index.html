@@ -8,7 +8,51 @@
   </head>
   <body>
     <main id="main">
+      <form id='recipe-form' onsubmit="createRecipe()">
+        Name: <input type="text" id="name"><br>
+        Description: <input type="textarea" id="description"><br>
+        Ingredients:<br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="submit">
+      </form>
     </main>
+    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <form id='recipe-form' onsubmit="createRecipe()">
+        Name: <input type="text" id="name"><br>
+        Description: <input type="textarea" id="description"><br>
+        Ingredients:<br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="submit">
+      </form>
+    </script>
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      
+    </script>
+
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <h1>{{name}}</h1>
+      <p>{{description}}</p>
+      <ul>
+        {{#each ingredients }}
+        <li>{{ displayIngredient this }}</li>
+        {{/each}}
+      </ul>
+    </script>
+
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <h1>{{ name }}</h1>
+      <a href="#" onclick="displayEditForm();">Edit Recipe</a><br>
+      {{>recipeDetailsPartial }}
+    </script>
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
