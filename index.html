@@ -10,18 +10,40 @@
     <main id="main">
     </main>
     <script id="recipe-form-template" type="text/x-handlebars-template">
-      <form id="recipe-form" onSubmit="createRecipe();">
-        <lable>Name</label><input type="text" id="name"><br>
-        <lable>Description</label><input type="text" id="description"><br>
+      {{> recipeFormPartial }}
+    </script>
 
-        <lable>Ingredient</label><input name="ingredients" type="text"><br>
-        <lable>Ingredient</label><input name="ingredients" type="text"><br>
-        <lable>Ingredient</label><input name="ingredients" type="text"><br>
-        <lable>Ingredient</label><input name="ingredients" type="text"><br>
-        <lable>Ingredient</label><input name="ingredients" type="text"><br>
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      <form id="recipe-form" onSubmit="createRecipe();">
+        <lable>Name </label>
+        <input type="text" id="name">
+        <br>
+
+        <lable>Description </label>
+        <input type="text" id="description">
+        <br>
+
+        <lable>Ingredient </label><input name="ingredients" type="text"><br>
+        <lable>Ingredient </label><input name="ingredients" type="text"><br>
+        <lable>Ingredient </label><input name="ingredients" type="text"><br>
+        <lable>Ingredient </label><input name="ingredients" type="text"><br>
+        <lable>Ingredient </label><input name="ingredients" type="text"><br>
 
         <input type="submit">
       </form>
+    </script>
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <h1>{{ name }}</h1>
+      {{> recipeDetailsPartial }}
+      <a href="#" onClick="displayEditForm();">Edit Recipe</a>
+    </script>
+
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p>Description: {{ description }}</p>
+      {{#each ingredients }}
+        <p>Ingredient: {{ displayIngredient this }}</p>
+      {{/each }}
     </script>
 
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
