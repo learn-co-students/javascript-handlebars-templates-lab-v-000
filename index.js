@@ -22,12 +22,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 })
 
 function createRecipe() {
+  // Use with Safari!
   // event.preventDefault();
 
   let recipe = {
     name: document.getElementById('name').value,
     description: document.getElementById('description').value,
-    ingredients: ingredientFieldValues(document.getElementsByName('ingredients')),
+    ingredients: ingredientValues('input[name=ingredients]', 'value'),
   }
 
   let template = Handlebars
@@ -39,12 +40,13 @@ function createRecipe() {
 }
 
 function displayEditForm() {
+  // Use with Safari!
   // event.preventDefault();
 
   let recipe = {
     name: document.getElementById('name').innerHTML,
     description: document.getElementById('description').innerHTML,
-    ingredients: ingredientValues(document.querySelectorAll('.ingredients')),
+    ingredients: ingredientValues('.ingredients', 'innerHTML'),
     onSubmit: "updateRecipe();"
   }
 
@@ -55,29 +57,11 @@ function displayEditForm() {
 }
 
 function updateRecipe() {
-  let recipe = {
-    name: document.getElementById('name').value,
-    description: document.getElementById('description').value,
-    ingredients: ingredientFieldValues(document.getElementsByName('ingredients')),
-  }
-
-  let template = Handlebars
-    .compile(document.getElementById('recipe-template').innerHTML);
-
-  let result = template(recipe);
-
-  document.getElementById('main').innerHTML = result;
+  createRecipe();
 }
 
-function ingredientValues(ingredients) {
-  let result = [];
-
-  [...ingredients].forEach(e => result.push({ingredient: e.innerHTML}));
-
-  return result;
-}
-
-function ingredientFieldValues(ingredients, method) {
+function ingredientValues(selector, method) {
+  let ingredients = document.querySelectorAll(selector);
   let result = [];
 
   [...ingredients].forEach(e => result.push({ingredient: e[method]}));
