@@ -14,35 +14,63 @@
     </script>
 
     <script id="recipe-form-partial" type="text/x-handlebars-template">
+      {{#if onSubmit }}
+      <form id="recipe-form" onSubmit="{{ onSubmit }}">
+      {{ else }}
       <form id="recipe-form" onSubmit="createRecipe();">
-        <lable>Name </label>
-        <input type="text" id="name">
+      {{/if}}
+        <label>Name </label>
+        <input type="text" id="name" value="{{ name }}">
         <br>
 
-        <lable>Description </label>
-        <input type="text" id="description">
+        <label>Description </label>
+        <input type="text" id="description" value="{{ description }}">
         <br>
 
-        <lable>Ingredient </label><input name="ingredients" type="text"><br>
-        <lable>Ingredient </label><input name="ingredients" type="text"><br>
-        <lable>Ingredient </label><input name="ingredients" type="text"><br>
-        <lable>Ingredient </label><input name="ingredients" type="text"><br>
-        <lable>Ingredient </label><input name="ingredients" type="text"><br>
+        <label>Ingredient </label>
+        <input name="ingredients"
+          type="text"
+          value="{{ingredients.[0].ingredient }}">
+        <br>
+
+        <label>Ingredient </label>
+        <input name="ingredients"
+          type="text"
+          value="{{ingredients.[1].ingredient }}">
+        <br>
+
+        <label>Ingredient </label>
+        <input name="ingredients"
+          type="text"
+          value="{{ingredients.[2].ingredient }}">
+        <br>
+
+        <label>Ingredient </label>
+        <input name="ingredients"
+          type="text"
+          value="{{ingredients.[3].ingredient }}">
+        <br>
+
+        <label>Ingredient </label>
+        <input name="ingredients"
+          type="text"
+          value="{{ingredients.[4].ingredient }}">
+        <br>
 
         <input type="submit">
       </form>
     </script>
 
     <script id="recipe-template" type="text/x-handlebars-template">
-      <h1>{{ name }}</h1>
+      <h1 id="name">{{ name }}</h1>
       {{> recipeDetailsPartial }}
       <a href="#" onClick="displayEditForm();">Edit Recipe</a>
     </script>
 
     <script id="recipe-details-partial" type="text/x-handlebars-template">
-      <p>Description: {{ description }}</p>
+      <p id="description">{{ description }}</p>
       {{#each ingredients }}
-        <p>Ingredient: {{ displayIngredient this }}</p>
+        <p class="ingredients">{{ displayIngredient this }}</p>
       {{/each }}
     </script>
 
