@@ -7,8 +7,47 @@
     <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
   </head>
   <body>
-    <main id="main">
-    </main>
+    <main id="main"></main>
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <article>
+        <header><h2 id="recipeTitle">{{name}}</h2></header>
+        <div>{{> recipeDetailsPartial }}</div>
+        <footer><a href="#" onclick="displayEditForm();">Edit Recipe</a></footer>
+      </article>
+    </script>
+
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p id="recipeDetailsDescription">{{description}}</p>
+      <ul>
+        {{#each ingredients}}
+        {{ displayIngredient this }}
+        {{/each}}
+      </ul>
+    </script>
+
+    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <form id='recipe-form' onsubmit="{{submitAction}};return false;">
+        {{> recipeFormPartial }}
+      </form>
+    </script>
+
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      Recipe Name: <input id="recipeName" type="text" value="{{recipeName}}"><br>
+      Description: <input id="recipeDescription" type="text" value="{{recipeDescription}}"><br>
+      <h4>Ingredients</h4>
+      {{#each ingredients}}
+      <input name="ingredients" type="text" value="{{this}}"><br>
+      {{else}}
+        Ingredient 1: <input type="text" name="ingredients"><br>
+        Ingredient 2: <input type="text" name="ingredients"><br>
+        Ingredient 3: <input type="text" name="ingredients"><br>
+        Ingredient 4: <input type="text" name="ingredients"><br>
+        Ingredient 5: <input type="text" name="ingredients"><br>
+      {{/each}}
+      <input type="submit">
+    </script>
+
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
