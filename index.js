@@ -1,9 +1,19 @@
+//HANDLEBARS seems like it works this way: first set a variable with the innerHTML of a template:
+// ( eg. var variable = document.getElementById("id-of-template").innerHTML. 
+// Then set a variable equal to Handlebars.complile(varible from above) 
+// ( eg. var template = Handlebars.compile(variable))
+// Lastly, in most cases, search for the id or name where you want your template (if you are searching for a tag name like main or something when you search for innerHTML make sure you preceed it with [0]... if not it will retrun an array like answer) normally though it will look like this:
+// document.getElementsByTagName("idOfSometing").innerHTML = template(you can pass in an argument of data if there is interpolated data in template)
+
+
+// This function runs right out of the gate and it compiles the recipe form on the page to start.
 function initForm() {
   var formTemplate = document.getElementById("recipe-form-template").innerHTML
   var template = Handlebars.compile(formTemplate)
   document.getElementsByTagName("main")[0].innerHTML = template({'submitAction': 'createRecipe()'})
 }
 
+// This function first sets a variable recipe that calls the function getRecipeIngredients which returns an object of recipe data. Then it goes and sets the template innerHTML to a variable. Which is then compiled. Lastly the compiled template variable is set to the innerHTML with the recipe object as an argument.
 function createRecipe() {
   var recipe = getRecipeIngredients()
   var recipeTemplate = document.getElementById("recipe-template").innerHTML
@@ -11,6 +21,7 @@ function createRecipe() {
   document.getElementById("main").innerHTML = template(recipe)
 }
 
+// Same as the create recipe above but there will be some differences in the template
 function updateRecipe() {
   var recipe = getRecipeIngredients()
   var recipeTemplate = document.getElementById("recipe-template").innerHTML
@@ -44,7 +55,7 @@ function getRecipeIngredients() {
       ingredients.push(ingredientsNodes[i].value)
     }
   }
-  var name = document.getElementById("recipeName").value
+  var name = document.getElementById("name").value
   var description = document.getElementById("recipeDescription").value
   var recipe = {name, ingredients, description}
   return(recipe)
