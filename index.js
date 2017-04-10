@@ -25,11 +25,7 @@ function createRecipe(){
 
 function displayEditForm(){
   document.getElementById('recipe').remove();
-  // displayRecipeForm();
   displayRecipeFormWithRecipeObjectContent();
-  updateRecipeObject();
-  updateRecipe();
-  document.getElementById('recipe-form').remove();
 }
 
 function displayRecipeForm(){
@@ -54,8 +50,10 @@ function updateRecipe(){
 }
 
 function displayRecipeFormWithRecipeObjectContent(){
-  displayRecipeForm();
-
+  // displayRecipeForm();
+  var recipeFormTemplate = Handlebars.compile(document.getElementById('recipe-form-template').innerHTML);
+  var recipeFormHtml = recipeFormTemplate(recipe);
+  document.getElementsByTagName('main')[0].innerHTML += recipeFormHtml;
   document.getElementsByName('name')[0].value = recipe.name
   document.getElementsByName('description')[0].value = recipe.description
   var ingredients = document.getElementsByName("ingredients")
