@@ -20,10 +20,10 @@
     </script>
 
     <script id="recipe-form-partial" type="text/x-handlebars-template">
-      <div>Name: <input id="name" name="name" type="text" value="{{name}}"></div>
-      <div>Description: <input id="description" name="description" type="text" value="{{description}}"></div>
+      <div>Name: <input id="name" name="name" type="text"></div>
+      <div>Description: <input id="description" name="description" type="text"></div>
       {{#each ingredients}}
-        <div>Ingredient: <input name="ingredients" type="text" value="{{displayIngredient this}}"></div>
+        <div>Ingredient: <input name="ingredients" type="text"></div>
       {{/each}}
     </script>
 

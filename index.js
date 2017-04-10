@@ -24,15 +24,11 @@ function createRecipe(){
 }
 
 function displayEditForm(){
+  document.getElementById('recipe').remove();
   // displayRecipeForm();
   displayRecipeFormWithRecipeObjectContent();
   updateRecipeObject();
   updateRecipe();
-  // var templateMain = Handlebars.compile(document.getElementById("recipe-template").innerHTML);
-  // var html = templateMain(recipe);
-  // document.getElementsByTagName("main")[0].innerHTML += html
-  // document.getElementById('recipe').remove();
-
   document.getElementById('recipe-form').remove();
 }
 
@@ -58,7 +54,7 @@ function updateRecipe(){
 }
 
 function displayRecipeFormWithRecipeObjectContent(){
-  displayRecipeForm()
+  displayRecipeForm();
 
   document.getElementsByName('name')[0].value = recipe.name
   document.getElementsByName('description')[0].value = recipe.description
