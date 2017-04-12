@@ -67,7 +67,7 @@ describe('Handlebars Templates Lab', function() {
         createRecipe()
         var spy = expect.spyOn(window.Handlebars, "compile").andCallThrough()
         displayEditForm()
-        expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-form-template").innerHTML)
+        expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-form-partial").innerHTML)
         spy.reset()
       })
     })

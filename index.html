@@ -24,27 +24,37 @@
       </form>
     </script>
 
-    <!-- Recipe view template -->
-    <script id="recipe-template" type="text/x-handlebars-template">
-      <h2>{{ name }}</h2>
-      <a href="#" onclick="displayEditForm();">Edit Recipe</a>
-      <div class="recipe" id="{{ name }}">
-        {{> recipeDetailsPartial}}
-      </div>
-    </script>
-
     <!-- Recipe details partial -->
     <script id="recipe-details-partial" type="text/x-handlebars-template">
       <p>{{ description }}</p>
-      <ul>
+      <ul class="{{ name }}">
         {{#each ingredients}}
         {{ displayIngredient }}
         {{/each}}
       </ul>
     </script>
 
+    <!-- Recipe form partial -->
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      <h2>Edit {{ name }}</h2>
+      <form id="recipe-form" onsumbit="return false; updateRecipe();">
+        Recipe name: <input type="text" id="name" value="{{ name }}"><br></br>
+        Recipe description: <input type="text" name="description" value="{{ description }}"><br></br>
+        {{#each ingredients}}
+        Ingredient: <input type="text" name="ingredients" value="{{ this.innerHTML }}"><br>
+        {{/each}}
+        <input type="submit">
+      </form>
+    </script>
 
-
+    <!-- Recipe view template -->
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <div class="recipeDetails">
+        <h2>{{ name }}</h2>
+        <a href="#" onclick="displayEditForm('{{name}}');">Edit Recipe</a>
+          {{> recipeDetailsPartial}}
+      </div>
+    </script>
 
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
