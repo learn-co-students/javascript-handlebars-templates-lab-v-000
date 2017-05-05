@@ -5,11 +5,11 @@ function init() {
     Handlebars.registerHelper('displayIngredient', function(ingredient){
         return new Handlebars.SafeString('<li name="ingredients">' + ingredient + '</li>')
     });
-    
+    renderForm();
 }
 document.addEventListener("DOMContentLoaded", function(event) {
     init();
-    renderForm();
+    
 })
 
 function renderForm() { 
@@ -18,7 +18,7 @@ function renderForm() {
     const description = '';
     const ingredients = ['','','','','']
     var recipe = {name, ingredients, description, submitAction: 'createRecipe()'}
-    document.getElementById('main').innerHTML += form_template({name,description,ingredients});
+    document.getElementById('main').innerHTML = form_template({name,description,ingredients});
 }
 
 
