@@ -10,31 +10,36 @@
     <main id="main"></main>
     <div id="recipe-view"></div>
     
+    
+    
     <script id="recipe-form-template" type="text/x-handlebars-template">
-        <form id="recipe-form" onsubmit="createRecipe(); return false;">
-                Name: <input id="name" name="name" type="text"><br>
-                Description: <input name="description" type=text><br>
-                Ingredients: <br>
-                1. <input type='text' name="ingredients"><br>
-                2. <input type='text' name="ingredients"><br>
-                3. <input type='text' name="ingredients"><br>
-                4. <input type='text' name="ingredients"><br>
-                5. <input type='text' name="ingredients"><br>
-                <a href="#" onclick="createRecipe()">Submit</a>
+        <form id="recipe-form" onsubmit="{{submitAction}}; return false;">
+        {{> recipeFormPartial }}
         </form>
     </script>
-    
+
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+        Name: <input id="name" name="name" type="text" value="{{name}}"><br>
+        Description: <input name="description" type=text value="{{description}}"><br>
+        Ingredients: <br>
+        {{#each ingredients}}
+        <input type='text' name="ingredients" value="{{this}}"><br>
+        {{/each}}
+        <a href="#" onclick="createRecipe()">Create Recipe</a>
+      </script>
+            
     <script id="recipe-template" type="text/x-handlebars-template">
-        <h3>{{name}}</h3>
-        {{> recipeDetailsPartial this }}<br>
+        <h3 name="name">{{name}}</h3>
+        {{> recipeDetailsPartial }}
         <a href="#" onclick="displayEditForm()">Edit Recipe</a>
     </script>
+    
     <script id="recipe-details-partial" type="text/x-handlebars-template">
-        {{description}}
-           <ul>
-            {{#each ingredients}}
-                {{displayIngredient this}}
-            {{/each}}
+        <p name="description">{{description}}</p>
+        <ul>
+        {{#each ingredients}}
+            {{displayIngredient this}}
+        {{/each}}
         </ul>
     </script>
     
