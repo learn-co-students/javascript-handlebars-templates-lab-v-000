@@ -7,42 +7,47 @@
     <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
   </head>
   <body>
-    <main id="main">
+    <main id="main"></main>
+    <div id="recipe-view"></div>
+    
     <script id="recipe-form-template" type="text/x-handlebars-template">
         <form id="recipe-form" onsubmit="createRecipe(); return false;">
-                Name: <input id="name" name="name" type="text" value="Apple Pie">
-                Description: <input name="description" type=text value="Traditional American Apple Pie">
+                Name: <input id="name" name="name" type="text"><br>
+                Description: <input name="description" type=text><br>
                 Ingredients: <br>
-                1. <input type='text' name="ingredients" value="Apples">
-                2. <input type='text' name="ingredients" value="Sugar">
-                3. <input type='text' name="ingredients" value="Flour">
-                4. <input type='text' name="ingredients" value="Cinnamon">
-                5. <input type='text' name="ingredients" value="Nutmeg">
-                <input type=submit value="Create Recipe">
+                1. <input type='text' name="ingredients"><br>
+                2. <input type='text' name="ingredients"><br>
+                3. <input type='text' name="ingredients"><br>
+                4. <input type='text' name="ingredients"><br>
+                5. <input type='text' name="ingredients"><br>
+                <a href="#" onclick="createRecipe()">Submit</a>
         </form>
     </script>
     
-    <script id = "recipe-template" type="text/x-handlebars-template">
+    <script id="recipe-template" type="text/x-handlebars-template">
         <h3>{{name}}</h3>
-        {{> recipeDetailsPartial }}<br>
+<!--        {{> recipeDetailsPartial this }}<br>-->
         <a href="#" onclick="displayEditForm()">Edit Recipe</a>
     </script>
     <script id="recipe-details-partial" type="text/x-handlebars-template">
         {{description}}
            <ul>
             {{#each ingredients}}
-            <li>{{displayIngredient}}</li>
+                {{displayIngredient this}}
             {{/each}}
         </ul>
     </script>
-    </main>
+    
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script src="index.js"></script>
+    
     <!-- Open this file and call `mocha.run()` in console to run tests -->
+    <script src="index.js"></script>
     <div id="mocha"></div>
     <script src="node_modules/mocha/mocha.js"></script>
     <script src="node_modules/expect/umd/expect.min.js"></script>
     <script>mocha.setup('bdd');</script>
+    
     <script src="test/index-test.js"></script>
+    
   </body>
 </html>
