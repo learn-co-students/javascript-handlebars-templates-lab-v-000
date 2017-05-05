@@ -1,6 +1,6 @@
 function init() {
     renderForm();
-    Handlebars.registerPartial('recipeDetailsPartial', document.getElementById('recipe-details-partial'));
+    Handlebars.registerPartial('recipeDetailsPartial', document.getElementById('recipe-details-partial').innerHTML);
     Handlebars.registerHelper('displayIngredient', function(ingredient){
 //        debugger
         return new Handlebars.SafeString('<li name="ingredientsList">' + ingredient + '</li>')
@@ -28,13 +28,15 @@ function createRecipe(){
           ingredient_list.forEach(function(ingredient){
         ingredients.push(ingredient.value)
     })
+    var recipe = {name, ingredients, description}
     
     const recipe_template_string = document.getElementById('recipe-template').innerHTML;
+    
     const recipe_template = Handlebars.compile(recipe_template_string);
-    const recipe = 'name'//, description:description, ingredients:ingredients};
+//    const recipe = {name:name}//, description:description, ingredients:ingredients};
     debugger
     const recipe_view = recipe_template(recipe);
-    document.getElementById('main').innerHTML += "Hello World"; //recipe_template(recipe);
+    document.getElementById('main').innerHTML = recipe_view;
     
 }
 
