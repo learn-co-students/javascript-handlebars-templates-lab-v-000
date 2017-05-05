@@ -19,7 +19,7 @@ function renderForm() {
 
 function createRecipe(){
     
-    const name = document.getElementsByName('name')[0].value.toString();
+    const name = document.getElementsByName('name')[0].value;
     const description = document.getElementsByName('description')[0].value
     let ingredient_list = document.getElementsByName('ingredients')
     ingredient_list = Array.prototype.slice.call(ingredient_list)
@@ -30,13 +30,9 @@ function createRecipe(){
     })
     var recipe = {name, ingredients, description}
     
-    const recipe_template_string = document.getElementById('recipe-template').innerHTML;
-    
-    const recipe_template = Handlebars.compile(recipe_template_string);
-//    const recipe = {name:name}//, description:description, ingredients:ingredients};
-    debugger
-    const recipe_view = recipe_template(recipe);
-    document.getElementById('main').innerHTML = recipe_view;
+    const recipe_template = Handlebars.compile(document.getElementById('recipe-template').innerHTML);
+
+    document.getElementById('recipe-view').innerHTML = recipe_template(recipe);
     
 }
 
