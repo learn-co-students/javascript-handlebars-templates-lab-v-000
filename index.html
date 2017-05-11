@@ -36,7 +36,7 @@
 <script src="test/index-test.js"></script>
 
 <script id="recipe-form-template" type="text/x-handlebars-template">
-  <form id='recipe-form'  onsubmit="createRecipe();return false;">
+  <form id='recipe-form'  onsubmit={{action}}>
     {{> recipeFormPartial }}
   </form>
     </script>
@@ -78,7 +78,7 @@
     </script>
 
     <script id="edit-form" type="text/x-handlebars-template">
-      <form id='recipe-edit-form'  onsubmit="updateRecipe();return false;">
+      <form id='recipe-form'  onsubmit={{action}}>
         {{> recipeFormPartial }}
 
 

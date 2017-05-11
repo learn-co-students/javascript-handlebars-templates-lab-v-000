@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function recipeFormTemplate() {
   var main = document.getElementsByTagName('main')[0]
-  main.innerHTML += document.getElementById('recipe-form-template').innerHTML
+  var template = Handlebars.compile(document.getElementById('recipe-form-template').innerHTML)
+  var html = template({'action': "createRecipe();return false;"})
+  main.innerHTML += html
 }
 
 function createRecipe() {
@@ -27,5 +29,9 @@ function createRecipe() {
 }
 
 function displayEditForm() {
+  var template = Handlebars.compile(document.getElementById('edit-form').innerHTML)
+  var html = template({'action': "updateRecipe();return false;" })
+  document.querySelector("main").innerHTML += html
+
 
 }
