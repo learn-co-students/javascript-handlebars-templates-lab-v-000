@@ -40,5 +40,12 @@ function displayEditForm() {
 }
 
 function updateRecipe() {
-  alert('done')
+  var ingredients = document.getElementsByName("ingredients")
+  var name = document.getElementById('name').value
+  var description = document.getElementById('description').value
+
+  var template = Handlebars.compile(document.getElementById('recipe-template').innerHTML)
+  var html = template({'ingredients': ingredients, 'description': description, 'name': name})
+  document.getElementsByTagName('main')[0].innerHTML = html
+
 }
