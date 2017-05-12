@@ -36,9 +36,8 @@
 <script src="test/index-test.js"></script>
 
 <script id="recipe-form-template" type="text/x-handlebars-template">
-  <form id='recipe-form'  onsubmit={{action}}>
-    {{> recipeFormPartial }}
-  </form>
+  <form id='recipe-form'  onsubmit="{{action}}">
+    {{> recipeFormPartial  }}
     </script>
 
     <script id="recipe-template" type="text/x-handlebars-template">
@@ -59,7 +58,7 @@
     </script>
 
     <script id='recipe-form-partial' type="text/x-handlebars-template">
-      <form id='recipe-form'  onsubmit=action>
+      <form id='recipe-form'  onsubmit="{{action}}">
           <label for="">name</label>
           <input id="name" type="text" name="" value="">
           <label for="">description</label>

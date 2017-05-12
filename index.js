@@ -12,8 +12,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function recipeFormTemplate() {
   var main = document.getElementsByTagName('main')[0]
+  var action = "createRecipe();return false;"
   var template = Handlebars.compile(document.getElementById('recipe-form-template').innerHTML)
-  var html = template({'action': "createRecipe();return false;"})
+  var html = template({'action': action})
   main.innerHTML += html
 }
 
@@ -29,9 +30,15 @@ function createRecipe() {
 }
 
 function displayEditForm() {
-  var template = Handlebars.compile(document.getElementById('edit-form').innerHTML)
-  var html = template({'action': "updateRecipe();return false;" })
-  document.querySelector("main").innerHTML += html
+  var template = Handlebars.compile(document.getElementById('recipe-form-template').innerHTML)
+  var action = "updateRecipe();return false;"
+  var html = template({'action': action})
+  //document.querySelector("main").innerHTML += html
+  document.getElementsByTagName('main')[0].innerHTML += html
 
 
+}
+
+function updateRecipe() {
+  alert('done')
 }
