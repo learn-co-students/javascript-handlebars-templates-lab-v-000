@@ -4,3 +4,14 @@ function init() {
 document.addEventListener("DOMContentLoaded", function(event) {
   init()
 })
+
+function createRecipe() {
+  var ingredient = {
+    name:
+    ingredient1:
+    ingredient2:
+    ingredient3:
+    ingredient4:
+    ingredient5:
+  }
+}
