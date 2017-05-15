@@ -8,8 +8,8 @@
   </head>
   <body>
     <main id="main">
-      <a href="#" onclick="createRecipe();">Create Recipe</a>
-      <form id="recipe-form" onsubmit="createRecipe(); return false">
+      <!-- <a href="#" onclick="createRecipe();">Create Recipe</a> -->
+      <!-- <form id="recipe-form" onsubmit="createRecipe(); return false">
         Name: <input="text" id="recipeName"><br>
         Ingredient 1: <input="text" id="recipeIngredient1"><br>
         Ingredient 2: <input="text" id="recipeIngredient2"><br>
@@ -18,15 +18,31 @@
         Ingredient 5: <input="text" id="recipeIngredient5"><br>
       </form>
 
-      or
+      or -->
 
-      <script id="recipe-form" onsubmit="createRecipe(); return false">
+      <!-- <script id="recipe-form" onsubmit="createRecipe(); return false">
       <p>{{name}}</p>
       <p>{{ingredient1}}</p>
       <p>{{ingredient2}}</p>
       <p>{{ingredient3}}</p>
       <p>{{ingredient4}}</p>
-      <p>{{ingredient5}}</p>
+      <p>{{ingredient5}}</p> -->
+
+      <!-- <script id="my-template" type="text/x-handlebars-template"> -->
+      <form id="recipe-form" onsubmit="createRecipe(); return false">
+      <p>{{description}}</p>
+    <ul>
+      {{#each ingredients}}
+      <li name="ingredients" id="name">{{name="ingredients"}}</li>
+      <li name="ingredients">{{name="ingredients"}}</li>
+      <li name="ingredients">{{name="ingredients"}}</li>
+      <li name="ingredients">{{name="ingredients"}}</li>
+      <li name="ingredients">{{name="ingredients"}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</form>
+</script>
     </main>
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
