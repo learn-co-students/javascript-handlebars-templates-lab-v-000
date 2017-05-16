@@ -8,7 +8,56 @@
   </head>
   <body>
     <main id="main">
+      <div id="form">
+        <form id="recipe-form" onsubmit="createRecipe();return false;" >
+            Name: <input type="text" name="name"><br></br>
+            Description: <input type="text" name="description"><br></br>
+            Ingredients <br>
+            1: <input type="text" name="ingredient1"><br>
+            2: <input type="text" name="ingredient2"><br>
+            3: <input type="text" name="ingredient3"><br>
+            4: <input type="text" name="ingredient4"><br>
+            5: <input type="text" name="ingredient5"><br>
+
+            <input type="submit">
+        </form>
+      </div>
+
+      <div id="stuff"></div>
     </main>
+
+    <script type="text/x-handlebars-tempalte" id="recipe-template">
+      <div id="recipe">
+        Name: {{name}}<br>
+        <a href="#" onclick="displayEditForm()">Edit Recipe</a>
+        {{> recipeDetailsPartial}}
+      </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="recipe-details-partial">
+      <p>{{description}}</p>
+      <ul>
+        {{#each ingredients}}
+          {{{displayIngredient name}}}
+        {{/each}}
+      </ul>
+    </script>
+
+    <script type="text/x-handlebars-template" id="recipe-form-template">
+      <form id="recipe-form-template" onsubmit="updateRecipe();return false;" >
+        Name: <input type="text" name="name"><br></br>
+        Description: <input type="text" name="description"><br></br>
+        Ingredients <br>
+        1: <input type="text" name="ingredient1"><br>
+        2: <input type="text" name="ingredient2"><br>
+        3: <input type="text" name="ingredient3"><br>
+        4: <input type="text" name="ingredient4"><br>
+        5: <input type="text" name="ingredient5"><br>
+
+        <input type="submit">
+      </form>
+    </script>
+
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
