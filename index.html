@@ -16,21 +16,48 @@
     <script src="node_modules/mocha/mocha.js"></script>
     <script src="node_modules/expect/umd/expect.min.js"></script>
 
-    <script id-"recipe-form-template" type="text/x-handlebars-template">
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <article>
+        <header><h2 id="nameHeader">{{name}}</h2></header><br>
+        <div>{{> recipeDetailsPartial}}</div>
+        <footer><a href="#" onclick="displayEditForm()">Edit Recipe</a></footer>
+      </article>
+    </script>
+
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p id="recipeDescription">{{description}}</p><br>
+
+      <h4>Ingredients</h4><br>
+      <ul>
+        {{#each ingredients}}
+          {{displayIngredient this}}
+        {{/each}}
+      </ul>
+    </script>
+
+    <script id="recipe-form-template" type="text/x-handlebars-template">
       <form id="recipe-form" onsubmit="{{submitAction}}; return false;" >
-        Name: <input type="text" id="name" value="{{name}}">
-        Description: <input type="text" id="description" value="{{description}}">
-
-        <h4>Ingredients</h4>
-        <input type="text" name="ingredients"><br>
-        <input type="text" name="ingredients"><br>
-        <input type="text" name="ingredients"><br>
-        <input type="text" name="ingredients"><br>
-        <input type="text" name="ingredients"><br>
-
-        <input type="submit">
-
+        {{> recipeFormPartial}}
       </form>
+    </script>
+
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      Name: <input type="text" id="name" value="{{name}}">
+      Description: <input type="text" id="description" value="{{description}}">
+
+      <h4>Ingredients</h4>
+      {{#each ingredients}}
+        <input type="text" name="ingredients" value="{{this}}"><br>
+      {{else}}
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+        <input type="text" name="ingredients"><br>
+      {{/each}}
+
+      <input type="submit">
+
     </script>
     <script>mocha.setup('bdd');</script>
     <script src="test/index-test.js"></script>
