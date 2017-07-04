@@ -48,43 +48,60 @@ function displayEditForm(id) {
 }
 
 function createRecipe() {
-  var recipe = {
-    name: document.getElementById("name").value,
-    description: document.getElementsByName("description")[0].value,
-    ingredients: [
-      {quantity: "1", ingredientName: document.getElementsByName("ingredients")[0].value},
-      {quantity: "1", ingredientName: document.getElementsByName("ingredients")[1].value},
-      {quantity: "1", ingredientName: document.getElementsByName("ingredients")[2].value},
-      {quantity: "1", ingredientName: document.getElementsByName("ingredients")[3].value},
-      {quantity: "1", ingredientName: document.getElementsByName("ingredients")[4].value}
-    ],
-    id: idCounter
-  }
+  var recipe = getRecipeFromForm();
+  recipe.id = idCounter;
   recipes[idCounter] = recipe;
   idCounter += 1;
   var template = Handlebars.compile(document.getElementById("recipe-template").innerHTML);
   var html = template(recipe);
   document.getElementById("main").innerHTML += html;
+  resetForm();
 }
 
+function getRecipeFromForm() {
+  return {
+    name: document.getElementById("name").value,
+    description: document.getElementsByName("description")[0].value,
+    ingredients: [
+      {
+        quantity: document.getElementsByName("quantities")[0].value,
+        ingredientName: document.getElementsByName("ingredients")[0].value
+      },
+      {
+        quantity: document.getElementsByName("quantities")[1].value,
+        ingredientName: document.getElementsByName("ingredients")[1].value
+      },
+      {
+        quantity: document.getElementsByName("quantities")[2].value,
+        ingredientName: document.getElementsByName("ingredients")[2].value
+      },
+      {
+        quantity: document.getElementsByName("quantities")[3].value,
+        ingredientName: document.getElementsByName("ingredients")[3].value
+      },
+      {
+        quantity: document.getElementsByName("quantities")[4].value,
+        ingredientName: document.getElementsByName("ingredients")[4].value
+      }
+    ]
+  }
+}
 
 function updateRecipe(id) {
-    var recipe = {
-      name: document.getElementById("name").value,
-      description: document.getElementsByName("description")[0].value,
-      ingredients: [
-        {quantity: "1", ingredientName: document.getElementsByName("ingredients")[0].value},
-        {quantity: "1", ingredientName: document.getElementsByName("ingredients")[1].value},
-        {quantity: "1", ingredientName: document.getElementsByName("ingredients")[2].value},
-        {quantity: "1", ingredientName: document.getElementsByName("ingredients")[3].value},
-        {quantity: "1", ingredientName: document.getElementsByName("ingredients")[4].value}
-      ],
-      id: id
-    }
+
+    var recipe = getRecipeFromForm();
+    recipe.id = id;
     recipes[id] = recipe;
     var template = Handlebars.compile(document.getElementById("recipe-template").innerHTML);
     var html = template(recipe);
     if (id) {
       document.getElementById("recipe-" + id).innerHTML = html;
     }
+    resetForm();
+}
+
+function resetForm() {
+    var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
+    var html = template({ingredients: [{}, {}, {}, {}, {}]});
+    document.getElementById("recipe-form").innerHTML = html;
 }
