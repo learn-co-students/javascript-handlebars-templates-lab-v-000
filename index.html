@@ -19,8 +19,7 @@
         {{#each ingredients}}
           {{> recipeFormPartial}}<br />
         {{/each}}
-        <button type="button" onClick="createRecipe()">Add Recipe</button>
-        <button type="button" onClick="updateRecipe({{ id }})">Update Recipe</button>
+        <button type="button" onClick="{{ onClick }}">{{ onClick }}</button>
       </form>
     </script>
 

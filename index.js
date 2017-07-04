@@ -6,13 +6,14 @@ function init() {
     name: 'Gordon Ramsey',
     description: 'yummy chicken noodle soup',
     ingredients: [
-      {quantity: "1 cup", ingredientName: 'chicken'},
-      {quantity: "3 nanoliters", ingredientName: 'stock'},
+      {quantity: "1", ingredientName: 'chicken'},
+      {quantity: "3", ingredientName: 'stock'},
       {quantity: "12", ingredientName: 'noodles'},
       {quantity: "12", ingredientName: 'noodles'},
       {quantity: "12", ingredientName: 'noodles'}
     ],
-    id: idCounter
+    id: idCounter,
+    onClick: "createRecipe()"
   }
   idCounter += 1;
 
@@ -41,10 +42,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 })
 
 function displayEditForm(id) {
-  console.log(recipes[id]);
+  var recipe = recipes[id];
+  recipe.onClick = "updateRecipe(" + id + ")";
+  document.getElementById("recipe-form").innerHTML = "";
   var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
-  var html = template(recipes[id]);
-  document.getElementById("recipe-form").innerHTML = html;
+  var html = template(recipe);
+  document.getElementById("recipe-" + id).innerHTML = html;
 }
 
 function createRecipe() {
@@ -102,6 +105,9 @@ function updateRecipe(id) {
 
 function resetForm() {
     var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
-    var html = template({ingredients: [{}, {}, {}, {}, {}]});
+    var html = template({
+      onClick: 'createRecipe()',
+      ingredients: [{}, {}, {}, {}, {}]
+    });
     document.getElementById("recipe-form").innerHTML = html;
 }
