@@ -43,11 +43,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function displayEditForm(id) {
   var recipe = recipes[id];
-  recipe.onClick = "updateRecipe(" + id + ")";
+  if (recipe) {
+    recipe.onClick = "updateRecipe(" + id + ")";
+  }
   document.getElementById("recipe-form").innerHTML = "";
   var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
   var html = template(recipe);
-  document.getElementById("recipe-" + id).innerHTML = html;
+  if (recipe) {
+    document.getElementById("recipe-" + id).innerHTML = html;
+  }
 }
 
 function createRecipe() {
