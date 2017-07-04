@@ -14,24 +14,27 @@
 
     <script id="recipe-form-template" type="text/x-handlebars-template">
       <form id="recipe-form">
-        Name <input type="text" id="name"><br>
-        Description <input type="text" name="description"><br>
-        Ingredient <input type="text" name="ingredients"><br>
-        Ingredient <input type="text" name="ingredients"><br>
-        Ingredient <input type="text" name="ingredients"><br>
-        Ingredient <input type="text" name="ingredients"><br>
-        Ingredient <input type="text" name="ingredients"><br>
+        Name <input type="text" id="name" value="{{ name }}"><br>
+        Description <input type="text" name="description" value="{{ description }}"><br>
+        {{#each ingredients}}
+          {{> recipeFormPartial}}<br />
+        {{/each}}
         <button type="button" onClick="createRecipe()">Add Recipe</button>
-        <button type="button" onClick="updateRecipe()">Update Recipe</button>
+        <button type="button" onClick="updateRecipe({{ id }})">Update Recipe</button>
       </form>
     </script>
 
+
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      Ingredient <input type="text" name="ingredients" value="{{ ingredientName }}">
+    </script>
+
     <script id="recipe-template" type="text/x-handlebars-template">
-      <div id="recipe">
+      <div id="recipe-{{ id }}">
         <p>{{ name }}</p>
         {{> recipeDetailsPartial }}
+        <a href="#" onclick="displayEditForm({{ id }})">Edit Recipe</a>
       </div>
-      <a href="#" onclick="displayEditForm()">Edit Recipe</a>
     </script>
 
     <script id="recipe-details-partial" type="text/x-handlebars-template">
@@ -41,10 +44,6 @@
           <li>{{ displayIngredient this }}</li>
           {{/each}}
         </ul>
-    </script>
-
-    <script id="recipe-form-partial" type="text/x-handlebars-template">
-        
     </script>
 
 <!-- includes -->

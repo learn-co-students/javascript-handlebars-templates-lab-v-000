@@ -1,14 +1,20 @@
+var recipes = {};
+var idCounter = 0;
 function init() {
   //put any page initialization/handlebars initialization here
   var recipe = {
     name: 'Gordon Ramsey',
     description: 'yummy chicken noodle soup',
     ingredients: [
-      {quantity: "1 cup", ingredient: 'chicken'},
-      {quantity: "3 nanoliters", ingredient: 'stock'},
-      {quantity: "12", ingredient: 'noodles'}
-    ]
+      {quantity: "1 cup", ingredientName: 'chicken'},
+      {quantity: "3 nanoliters", ingredientName: 'stock'},
+      {quantity: "12", ingredientName: 'noodles'},
+      {quantity: "12", ingredientName: 'noodles'},
+      {quantity: "12", ingredientName: 'noodles'}
+    ],
+    id: idCounter
   }
+  idCounter += 1;
 
   Handlebars.registerPartial(
     'recipeDetailsPartial',
@@ -25,7 +31,7 @@ function init() {
   });
 
   var formTemplate = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
-  var html = formTemplate({});
+  var html = formTemplate(recipe);
   document.getElementsByTagName("main")[0].innerHTML += html;
 }
 
@@ -34,14 +40,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
   init()
 })
 
-function displayEditForm() {
+function displayEditForm(id) {
+  console.log(recipes[id]);
   var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
-  var html = template();
+  var html = template(recipes[id]);
   document.getElementById("recipe-form").innerHTML = html;
 }
 
 function createRecipe() {
-  var context = {
+  var recipe = {
     name: document.getElementById("name").value,
     description: document.getElementsByName("description")[0].value,
     ingredients: [
@@ -50,17 +57,19 @@ function createRecipe() {
       {quantity: "1", ingredientName: document.getElementsByName("ingredients")[2].value},
       {quantity: "1", ingredientName: document.getElementsByName("ingredients")[3].value},
       {quantity: "1", ingredientName: document.getElementsByName("ingredients")[4].value}
-    ]
+    ],
+    id: idCounter
   }
+  recipes[idCounter] = recipe;
+  idCounter += 1;
   var template = Handlebars.compile(document.getElementById("recipe-template").innerHTML);
-  var html = template(context);
+  var html = template(recipe);
   document.getElementById("main").innerHTML += html;
 }
 
 
-function updateRecipe() {
-
-    var context = {
+function updateRecipe(id) {
+    var recipe = {
       name: document.getElementById("name").value,
       description: document.getElementsByName("description")[0].value,
       ingredients: [
@@ -69,9 +78,13 @@ function updateRecipe() {
         {quantity: "1", ingredientName: document.getElementsByName("ingredients")[2].value},
         {quantity: "1", ingredientName: document.getElementsByName("ingredients")[3].value},
         {quantity: "1", ingredientName: document.getElementsByName("ingredients")[4].value}
-      ]
+      ],
+      id: id
     }
+    recipes[id] = recipe;
     var template = Handlebars.compile(document.getElementById("recipe-template").innerHTML);
-    var html = template(context);
-    document.getElementById("main").innerHTML += html;
+    var html = template(recipe);
+    if (id) {
+      document.getElementById("recipe-" + id).innerHTML = html;
+    }
 }
