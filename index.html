@@ -34,8 +34,8 @@
     </script>
 
     <script id="recipe-form-partial" type="text/x-handlebars-template">
-      Recipe name: <input id="name" type="text" name="name" value="{{name}}"><br>
-      Description: <input id="description" type="text" name="description" value="{{description}}"><br>
+      Recipe name: <input id="name" type="text" value="{{name}}"><br>
+      Description: <input id="description" type="text" value="{{description}}"><br>
       <h4>Ingredients: </h4>
       {{#each ingredients}}
       <input name="ingredients" type="text" value="{{this}}"><br>
