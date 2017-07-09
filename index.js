@@ -14,7 +14,7 @@ function init() {
   var formTemplate = Handlebars.compile(document.getElementById(
     "recipe-form-template").innerHTML);
   var ingredients = [0,0,0,0,0];
-  var blank_form = formTemplate({ingredients: ingredients});
+  var blank_form = formTemplate({ingredients: ingredients, submitAction: "createRecipe()"});
   document.querySelector("#main").innerHTML += blank_form;
 
 }
@@ -46,7 +46,7 @@ function displayEditForm() {
   var formTemplate = Handlebars.compile(document.getElementById(
     "recipe-form-template").innerHTML);
   document.querySelector("#main").innerHTML += formTemplate({name: name,
-  description: description, ingredients: ingredients});
+  description: description, ingredients: ingredients, submitAction: "updateRecipe()"});
 }
 
 function updateRecipe() {
