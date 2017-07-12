@@ -1,7 +1,7 @@
 describe('Handlebars Templates Lab', function() {
   describe('page', function() {
     before(function() {
-   //   init()
+      init()
     })
 
     it('has a recipe form', function() {
@@ -30,12 +30,12 @@ describe('Handlebars Templates Lab', function() {
       expect(recipeDetailsPartial.type).toBe("text/x-handlebars-template", "Template must be of type text/x-handlebars-template")
       expect(recipeDetailsPartial.innerHTML).toMatch(/{{\s?description\s?}}/)
       expect(recipeDetailsPartial.innerHTML).toMatch(/{{\s?#each ingredients\s?}}/)
-    //  expect(recipeDetailsPartial.innerHTML).toMatch(/{{\s?displayIngredient this\s?}}/, "Template must make use of displayIngredient custom helper inside the #each block helper")
+      expect(recipeDetailsPartial.innerHTML).toMatch(/{{\s?displayIngredient this\s?}}/, "Template must make use of displayIngredient custom helper inside the #each block helper")
     })
     it('has a recipe form template', function() {
       var recipeFormTemplate = document.getElementById("recipe-form-template")
       expect(recipeFormTemplate).toExist("Must provide a template with an id of 'recipe-form-template'")
-      //expect(recipeFormTemplate.type).toBe("text/x-handlebars-template", "Template must be of type text/x-handlebars-template");
+      expect(recipeFormTemplate.type).toBe("text/x-handlebars-template", "Template must be of type text/x-handlebars-template");
     })
   })
 
@@ -76,8 +76,8 @@ describe('Handlebars Templates Lab', function() {
       it('renders the recipe template', function() {
         init()
         var spy = expect.spyOn(window.Handlebars, "compile").andCallThrough()
-        //createRecipe()
-        //expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-template").innerHTML)
+        createRecipe()
+        expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-template").innerHTML)
         spy.reset()
       })
     })
@@ -86,8 +86,8 @@ describe('Handlebars Templates Lab', function() {
       it('renders the recipe template', function() {
         init()
         var spy = expect.spyOn(window.Handlebars, "compile").andCallThrough()
-        //updateRecipe()
-        //expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-template").innerHTML)
+        updateRecipe()
+        expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-template").innerHTML)
         spy.reset()
       })
     })
