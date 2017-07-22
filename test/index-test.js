@@ -64,7 +64,7 @@ describe('Handlebars Templates Lab', function() {
     describe('displayEditForm', function() {
       it('renders the edit form template', function() {
         init()
-        createRecipe()
+        //createRecipe()
         var spy = expect.spyOn(window.Handlebars, "compile").andCallThrough()
         displayEditForm()
         expect(spy).toHaveBeenCalledWith(document.getElementById("recipe-form-template").innerHTML)

@@ -1,3 +1,78 @@
+<!--<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <main id="main">
+      <form id="recipe-form" type="text/x-handlebars-template" onsubmit="createRecipe()">
+        Enter name: <input type="text" name="name" id="name"><br>
+        Enter description: <input type="text" name="description"><br>
+        Enter first ingredient: <input type="text" name="ingredients"><br>
+        Enter first ingredient: <input type="text" name="ingredients"><br>
+        Enter first ingredient: <input type="text" name="ingredients"><br>
+        Enter first ingredient: <input type="text" name="ingredients"><br>
+        Enter first ingredient: <input type="text" name="ingredients"><br>
+      </form>
+      
+      <script id="recipe-form-template" type="text/x-handlebars-template" >
+        
+      </script>
+      
+      <script id="recipe-template" type="text/x-handlebars-template">
+        <p>{{name}}</p>
+        <p><a href="displayEditForm()">Edit Recipe</a></p>
+        {{> recipeDetailsPartial }}
+      </script>
+      
+      <script id="recipe-details-partial" type="text/x-handlebars-template">
+        {{ description }}
+        {{ #each ingredients }}
+        <p>{{ displayIngredient }}</p>
+        {{ /each }}
+      </script>
+    </main>
+--><!--    <script id="recipe-template" type="text/x-handlebars-template">
+      <article>
+        <div id="recipe">
+        <p>{{name}}</p>
+        <p>{{description}}</p>
+        <div name="ingredients">
+          {{#each ingredients}}
+          <li>{{name}}</li>
+          {{/each}}
+        <a href="#" onclick="displayEditForm()">Edit Recipe</a>
+<!--        </ul>  -->
+
+<!--      </article>
+    </script>
+    
+<!--    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <div id="recipe">
+        <p>{{name}}</p>
+        <p>{{description}}</p>
+        <div name="ingredients">
+          {{#each ingredients}}
+          <li>{{name}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </script>
+-->    
+<!--    <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="index.js"></script>
+    <!-- Open this file and call `mocha.run()` in console to run tests -->
+<!--    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/expect/umd/expect.min.js"></script>
+    <script>mocha.setup('bdd');</script>
+    <script src="test/index-test.js"></script>
+  </body>
+</html>
+-->-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,5 +92,40 @@
     <script src="node_modules/expect/umd/expect.min.js"></script>
     <script>mocha.setup('bdd');</script>
     <script src="test/index-test.js"></script>
+    
+    <form id="recipe-form" type="text/x-handlebars-template" onsubmit="createRecipe()">
+      Enter name: <input type="text" name="name" id="name"><br>
+      Enter description: <input type="text" name="description"><br>
+      Enter first ingredient: <input type="text" name="ingredients"><br>
+      Enter first ingredient: <input type="text" name="ingredients"><br>
+      Enter first ingredient: <input type="text" name="ingredients"><br>
+      Enter first ingredient: <input type="text" name="ingredients"><br>
+      Enter first ingredient: <input type="text" name="ingredients"><br>
+    </form>
+    
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <p>{{name}}</p>
+      {{> recipeDetailsPartial }}
+      <p><a href="displayEditForm()">Edit Recipe</a></p>
+    </script>
+    
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      {{ description }}
+      {{ #each ingredients }}
+      <p>{{ displayIngredient this}}</p>
+      {{ /each }}
+    </script>
+    
+    <script id="recipe-form-template" type="text/x-handlebars-template" onsubmit="createRecipe()">
+      <div id="recipe">
+        <p>{{name}}</p>
+        <p>{{description}}</p>
+        <div name="ingredients">
+          {{#each ingredients}}
+          <li>{{name}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </script>
   </body>
 </html>
