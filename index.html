@@ -8,7 +8,46 @@
   </head>
   <body>
     <main id="main">
+      <h1>Create your own recipe!</h1>
     </main>
+
+    <!-- OK part 1-->
+    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <form id="recipe-form" onsubmit="createRecipe(); return false;">
+        {{> recipeFormPartial }}
+        <input type="submit">
+      </form>
+    </script>
+
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      <div>Name: <input id="name" name="name" type="text"></div>
+      <div>Description: <input id="description" name="description" type="text"></div>
+      {{#each ingredients}}
+        <div>Ingredient: <input name="ingredients" type="text"></div>
+      {{/each}}
+    </script>
+
+    <!-- OK part2 -->
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <div id="recipe">
+        <h3>Recipe: {{ name }}</h3>
+        {{> recipeDetailsPartial }}
+        <a href="#" onclick="displayEditForm();">Edit Recipe</a>
+      </div>
+    </script>
+
+    <!-- OK part 3-->
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p>Description: {{description}}</p>
+      <p>Ingredients:</p>
+      <ul>
+        {{#each ingredients}}
+          <li><p>{{displayIngredient this}}</p></li>
+        {{/each}}
+      </ul>
+    </script>
+
+
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
@@ -18,4 +57,16 @@
     <script>mocha.setup('bdd');</script>
     <script src="test/index-test.js"></script>
   </body>
+
+      <!-- <form id="recipe-form" onsubmit="createRecipe(); return false;">
+          <div>Name: <input id="name" name="name" type="text"></div>
+          <div>Description: <input id="description" name="description" type="text"></div>
+          <div>Ingredient 1: <input name="ingredients" type="text"></div>
+          <div>Ingredient 2: <input name="ingredients" type="text"></div>
+          <div>Ingredient 3: <input name="ingredients" type="text"></div>
+          <div>Ingredient 4: <input name="ingredients" type="text"></div>
+          <div>Ingredient 5: <input name="ingredients" type="text"></div>
+          <input type="submit">
+      </form> -->
+
 </html>
