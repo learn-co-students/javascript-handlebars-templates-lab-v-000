@@ -22,6 +22,7 @@ describe('Handlebars Templates Lab', function() {
       expect(recipeTemplate.type).toBe("text/x-handlebars-template", "Template must be of type text/x-handlebars-template")
       expect(recipeTemplate.innerHTML).toMatch(/{{\s?name\s?}}/)
       expect(recipeTemplate.innerHTML).toMatch(/<a.*displayEditForm().*>Edit Recipe<\/a>/, "Template must have an 'Edit Recipe' link that calls 'displayEditForm()'")
+      console.log(recipeTemplate.innerHTML)
       expect(recipeTemplate.innerHTML).toMatch(/{{>\s?recipeDetailsPartial\s?}}/, "Template must render the recipeDetailsPartial")
     })
     it('has a recipe details partial template', function() {
