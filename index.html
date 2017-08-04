@@ -11,6 +11,54 @@
     </main>
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
+
+    <!-- Create a form template with an id of recipe-form-template that will be used to enter new recipes. Make the form submit with a createRecipe() function.
+    Provide inputs for recipe name, description, and at least five ingredients. Hint: Get comfy collecting values with getElementsByName().-->
+    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <form id="recipe-form" onsubmit="{{submitAction}};return false;">
+        <div> {{> recipeFormPartial }} </div>
+      </form>
+    </script>
+
+    <!-- Create a template with an id of recipe-template. This template should contain the recipe name and an "Edit Recipe" link, and render the recipeDetailsPartial in step 3.
+    Render this template with the recipe data when the user submits the form.-->
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <header><h2 id="nameHeader"> {{name}} </h2></header>
+      <div> {{> recipeDetailsPartial }} </div>
+      <footer><a href="#" onclick="displayEditForm();">Edit Recipe</a></footer>
+    </script>
+
+    <!-- Register a partial called recipeDetailsPartial for the description and ingredients of the recipe. Create a template with an id of recipe-details-partial to hold the markup.
+    Use the each helper to display the collection of ingredients.-->
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p id="recipeDescription"> {{description}} </p>
+      <ul>
+        {{#each ingredients}}
+          {{ displayIngredient this }}
+        {{/each}}
+      </ul>
+    </script>
+
+    <!-- Refactor your forms so that recipe-form and the edit form template are both constructed with the same recipe-form-template. The template should render with the recipe data for edit,
+    and with empty values for a new recipe. Hint: Don't forget you can pass any object with any properties as the context for your templates, including, for instance, values for onsubmit.-->
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      Name: <input id="name" type="text" value="{{name}}"><br>
+      Description: <input id="description" type="text" value="{{description}}"><br>
+      Ingredients: <br>
+      {{#if ingredients}}
+        {{#each ingredients}}
+          <input name="ingredients" type="text" value="{{this}}"><br>
+        {{/each}}
+      {{else}}
+        <input name="ingredients" type="text"><br>
+        <input name="ingredients" type="text"><br>
+        <input name="ingredients" type="text"><br>
+        <input name="ingredients" type="text"><br>
+        <input name="ingredients" type="text"><br>
+      {{/if}}
+        <input type="submit">
+    </script>
+
     <!-- Open this file and call `mocha.run()` in console to run tests -->
     <div id="mocha"></div>
     <script src="node_modules/mocha/mocha.js"></script>
