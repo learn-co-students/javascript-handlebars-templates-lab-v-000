@@ -58,8 +58,7 @@ describe('Handlebars Templates Lab', function() {
   })
 
   describe('functions', function() {
-    before(function() {
-    })
+    before(function() {})
 
     describe('displayEditForm', function() {
       it('renders the edit form template', function() {
