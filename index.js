@@ -55,13 +55,13 @@ function updateRecipe() {
     var currentValues = document.getElementById("filledRecipe");
     var source = document.getElementById("recipe-template").innerHTML;
     var template = Handlebars.compile(source);
-    var nm = currentValues.querySelector("#name").innerHTML;
-    var desc = currentValues.querySelector("#recipeDescription").innerHTML;
-    var ingredients = currentValues.querySelectorAll("li[name='ingredients']");
+    var nm = currentValues.querySelector("#name").value;
+    var desc = currentValues.querySelector("#recipeDescription").value;
+    var ingredients = currentValues.querySelectorAll("[name='ingredients']");
     var ingLen = ingredients.length;
     var ingredientsValues = [];
     for (var i = 0; i < ingLen; i++) {
-        ingredientsValues.push(ingredients[i].innerHTML)
+        ingredientsValues.push(ingredients[i].value)
     };
     var html = template({name:nm, description:desc, ingredients:ingredientsValues});
     currentValues.innerHTML = html
