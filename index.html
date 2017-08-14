@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mocha</title>
+    <title>Handlebars</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
@@ -11,6 +11,43 @@
     </main>
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
+    <!-- form -->
+    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <form id="recipe-form" onsubmit="{{submitAction}};return false;">
+        {{> recipeFormPartial }}
+      </form>
+    </script>
+    <!-- recipe-form-partial -->
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      Name: <input id="name" type="text" value="{{name}}"><br>
+      Description: <input id="description" type="text" value="{{description}}"><br>
+      <h4>Ingredients</h4>
+      {{#each ingredients}}
+      <input name="ingredients" type="text" value="{{this}}"><br>
+      {{else}}
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      {{/each}}
+      <input type="submit">
+    </script>
+    <!-- recipe display -->
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <p id="name">Name: {{name}}</p>
+      <a href="#" onclick="displayEditForm();">Edit Recipe</a>
+      {{>recipeDetailsPartial}}
+    </script>
+    <!-- recipe display partial -->
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p id="description">  Description: {{description}} </p>
+        <ul>
+          {{#each ingredients}}
+            <li name="ingredientList">{{displayIngredient this}}</li>
+          {{/each}}
+        </ul>
+    </script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
     <div id="mocha"></div>
     <script src="node_modules/mocha/mocha.js"></script>
