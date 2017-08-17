@@ -17,16 +17,16 @@ function HandleBarsSetup() {
 
 function initSetup() {
 	var recipeForm = document.getElementById("recipe-form-template").innerHTML
-	var formTemplate = Handlebars.compile(recipeForm)
-	var html = document.getElementsByTagName("main")[0].innerHTML = formTemplate({"Submit": "createRecipe()"})
+	var compiledTemplate = Handlebars.compile(recipeForm)
+	var html = document.getElementsByTagName("main")[0].innerHTML = compiledTemplate({"Submit": "createRecipe()"})
 }
 
 function createRecipe() {
 	var recipe = gatherRecipeInfo()
 
-	var recipeScriptTemplate = document.getElementById("recipe-template").innerHTML
-	var recipeTemplate = Handlebars.compile(recipeScriptTemplate)
-	document.getElementById("main").innerHTML = recipeTemplate(recipe)
+	var recipeTemplate = document.getElementById("recipe-template").innerHTML
+	var compiledTemplate = Handlebars.compile(recipeScriptTemplate)
+	document.getElementById("main").innerHTML = compiledTemplate(recipe)
 }
 
 function gatherRecipeInfo() {
