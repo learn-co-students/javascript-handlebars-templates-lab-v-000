@@ -18,7 +18,7 @@ function HandleBarsSetup() {
 function initSetup() {
 	var recipeForm = document.getElementById("recipe-form-template").innerHTML
 	var compiledTemplate = Handlebars.compile(recipeForm)
-	var html = document.getElementsByTagName("main")[0].innerHTML = compiledTemplate({"Submit": "createRecipe()"})
+	var html = document.getElementById("main").innerHTML = compiledTemplate({"Submit": "createRecipe()"})
 }
 
 function createRecipe() {
