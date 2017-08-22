@@ -60,13 +60,13 @@ function displayEditForm() {
   var recipe = {name, description, ingredients, submitAction: "updateRecipe()"}
 
   var recipeFormTemplate = document.getElementById("recipe-form-template").innerHTML
-  var template = Handlebars.compile(recipeFormTemplate)
-  document.getElementById("main").innerHTML = template(recipe)
+  var compiledTemplate = Handlebars.compile(recipeFormTemplate)
+  document.getElementById("main").innerHTML = compiledTemplate(recipe)
 }
 
 function updateRecipe() {
   var recipe = gatherRecipeInfo()
   var recipeTemplate = document.getElementById("recipe-template").innerHTML
-  var template = Handlebars.compile(recipeTemplate)
-  document.getElementById("main").innerHTML = template(recipe)
+  var compiledTemplate = Handlebars.compile(recipeTemplate)
+  document.getElementById("main").innerHTML = compiledTemplate(recipe)
 }
