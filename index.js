@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 function HandleBarsSetup() {
-	Handlebars.registerPartial("recipeDetailsPartials", document.getElementById("recipe-details-partial").innerHTML)
+	Handlebars.registerPartial("recipeDetailsPartial", document.getElementById("recipe-details-partial").innerHTML)
 	Handlebars.registerHelper("displayIngredient", function(ingredient) {
 		return new Handlebars.SafeString("<li name='ingredientsList'>" + "ingredient" + "</li")
 	})
