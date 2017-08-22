@@ -22,17 +22,7 @@
     <!-- Creates the Form that allows user to create/submit new Recipes -->
     <script id="recipe-form-template" type="text/x-handlebars-template">
       <form id="recipe-form" onsubmit="{{Submit}}; return false">
-        Name: <input id="name" type="text" value="{{name}}">
-        Description: <input id="description" type="text" value="{{description}}">
-        <h4>Ingredients:</h4>
-          <ul>
-            <li><input name="ingredients" type="text"></li>
-            <li><input name="ingredients" type="text"></li>
-            <li><input name="ingredients" type="text"></li>
-            <li><input name="ingredients" type="text"></li>
-            <li><input name="ingredients" type="text"></li>
-          </ul>
-          <input type="submit">
+       {{> recipeFormPartial }}
       </form>
     </script>
 
@@ -40,7 +30,7 @@
     <script id="recipe-template" type="text/x-handlebars-template">
       <h2 id="nameHeader">{{name}}</h2>
       {{> recipeDetailsPartial }}
-      <a href="#">Edit Recipe</a>
+      <a href="#" onclick="displayEditForm();">Edit Recipe</a>
     </script>
 
 
@@ -54,6 +44,22 @@
         {{displayIngredient this}}
         {{/each}}
       </ul>
+    </script>
+
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      Name: <input id="name" type="text" value="{{name}}"><br>
+      Description: <input id="description" type="text" value="{{description}}"><br>
+      <h4>Ingredients</h4>
+      {{#each ingredients}}
+      <input name="ingredients" type="text" value="{{this}}"><br>
+      {{else}}
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      <input name="ingredients" type="text"><br>
+      {{/each}}
+      <input type="submit">
     </script>
   </body>
 </html>
