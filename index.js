@@ -36,7 +36,7 @@ function gatherRecipeInfo() {
 
 	var ingredients = []
 
-	for (i = 0; i < ingredientsNodes.length; i++) {
+	for (var i = 0; i < ingredientsNodes.length; i++) {
 		if (ingredientsNodes[i].value !== "") {
 			ingredients.push(ingredientsNodes[i].value)
 		}
