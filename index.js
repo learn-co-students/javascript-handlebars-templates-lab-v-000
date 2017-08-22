@@ -25,7 +25,7 @@ function createRecipe() {
 	var recipe = gatherRecipeInfo()
 
 	var recipeTemplate = document.getElementById("recipe-template").innerHTML
-	var compiledTemplate = Handlebars.compile(recipeScriptTemplate)
+	var compiledTemplate = Handlebars.compile(recipeTemplate)
 	document.getElementById("main").innerHTML = compiledTemplate(recipe)
 }
 
