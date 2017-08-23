@@ -5,12 +5,52 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
+
+    <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="index.js"></script>
   </head>
   <body>
     <main id="main">
+      
     </main>
-    <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script src="index.js"></script>
+
+    <div id="edit-form">
+      
+    </div>
+
+
+    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <form id="recipe-form" onsubmit="createRecipe();return false;">
+        Name: <input type="text" id="name"><br>
+        Description: <input type="textarea" id="recipeDescription"><br>
+        Ingredient: <input type="text" id="ingredient1" name= "ingredients"><br>
+        Ingredient: <input type="text" id="ingredient2" name= "ingredients"><br>
+        Ingredient: <input type="text" id="ingredient3" name= "ingredients"><br>
+        Ingredient: <input type="text" id="ingredient4" name= "ingredients"><br>
+        Ingredient: <input type="text" id="ingredient5" name= "ingredients"><br>
+        <input type="submit">
+      </form>
+    </script>
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <div id="recipe">
+        {{name}}
+        {{> recipeDetailsPartial }}
+        <a href="#" onclick="displayEditForm();">Edit Recipe</a>
+      </div>
+    </script>
+
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+
+        <p>{{description}}</p>
+        <ul>
+          {{#each ingredients}}
+          <li>{{displayIngredient this}}</li>
+          {{/each}}
+        </ul>
+
+    </script>
+
     <!-- Open this file and call `mocha.run()` in console to run tests -->
     <div id="mocha"></div>
     <script src="node_modules/mocha/mocha.js"></script>
