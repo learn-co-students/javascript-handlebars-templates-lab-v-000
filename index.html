@@ -9,13 +9,44 @@
   <body>
     <main id="main">
     </main>
-    <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script src="index.js"></script>
+        <script id="recipe-form-template" type="text/x-handlebars-template">
+      {{> recipeFormPartial}}
+    </script>
+
     <!-- Open this file and call `mocha.run()` in console to run tests -->
     <div id="mocha"></div>
     <script src="node_modules/mocha/mocha.js"></script>
     <script src="node_modules/expect/umd/expect.min.js"></script>
     <script>mocha.setup('bdd');</script>
     <script src="test/index-test.js"></script>
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <div id="showRecipe">
+        <h1 id="recipeName">{{name}}</h1>
+        <a href="#" onclick="displayEditForm();">Edit Recipe</a>
+        {{> recipeDetailsPartial }}
+      </div>
+    </script>
+
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p id="recipeDescription"> {{description}} </p>
+      <h3>Ingredients:</h3>
+      {{#each ingredients}}
+        {{ displayIngredient this}}
+      {{/each}}
+    </script>
+    <script id="recipe-form-partial" type="text/x-handlebars-template">
+      <form onsubmit="createRecipe(); return false;" id="recipe-form">
+        Name: <input type="text" name="name" id="name" value="{{name}}"><br>
+        Description: <input type="text" name="description" value="{{description}}"><br>
+        Ingredients: <br>
+        {{#each ingredients}}
+        <input type="text" name ="ingredients" value="{{this}}"><br>
+        {{/each}}
+        <input type="submit">
+      </form>
+    </script>
+    <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
