@@ -8,9 +8,33 @@
   </head>
   <body>
     <main id="main">
+
+      <form id="recipe-form" onsubmit="createRecipe();return false;">
+        Name: <input type="text" id="recipeName"><br>
+        Description: <input type="text" id="recipeDescription"><br>
+        Ingredient: <input type="text" name="recipeIngredient"><br>
+        Ingredient: <input type="text" name="recipeIngredient"><br>
+        Ingredient: <input type="text" name="recipeIngredient"><br>
+        Ingredient: <input type="text" name="recipeIngredient"><br>
+        Ingredient: <input type="text" name="recipeIngredient"><br>
+        <input type="submit">
+      </form>
     </main>
+
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
+
+      <script id="recipe-template" type="text/x-handlebars-template">
+        <article>
+          <p>{{name}}</p>
+          <p>{{description}}</p>
+          <p>{{ingredients}}</p>
+          <a href="#">Edit Recipe</a>
+        </article>
+      </script>
+
+      <script id="recipe-details-partial" type="text/x-handlebars-template">
+      </script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
     <div id="mocha"></div>
     <script src="node_modules/mocha/mocha.js"></script>
