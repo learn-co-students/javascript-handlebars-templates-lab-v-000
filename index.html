@@ -12,7 +12,7 @@
     </main>
 
     <script id="recipe-form-template" type="text/x-handlebars-template">
-      <form onsubmit="createRecipe();return false;">
+      <form onsubmit=onSubmitValue>
         Recipe Name: <input type="text" id="name"><br>
         Recipe Description <input type="textarea" id="description"><br>
         {{#for 1 6 1}}

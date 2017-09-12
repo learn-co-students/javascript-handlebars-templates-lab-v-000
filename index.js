@@ -31,7 +31,7 @@ function updateRecipe() {
 function displayEditForm(recipe) {
   var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
   var onSubmitValue = "updateRecipe();return true;"
-  var html = template(recipe);
+  var html = template(recipe, onSubmitValue);
   document.getElementsByTagName("main")[0].innerHTML = html;
 }
 
