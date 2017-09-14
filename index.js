@@ -1,7 +1,12 @@
 function init() {
+Handlebars.registerPartial('recipeDetailsPartial', document.getElementById("recipe-details-partial").innerHTML)
+Handlebars.registerPartial('recipeFormPartial', document.getElementById("recipe-form-partial").innerHTML)
+Handlebars.registerHelper('displayIngredient', function() {return new Handlebars.SafeString(this)})
+
   var recipe = {
   name: "",
   description: "",
+  submit: "createRecipe();",
   ingredients: {
     ingredient1: "",
     ingredient2: "",
@@ -12,7 +17,7 @@ function init() {
   }
   var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
   var result = template(recipe);
-  document.getElementById("main").innerHTML+= result;
+  document.getElementById("main").innerHTML = result;
 }
 
 function createRecipe(){
@@ -20,11 +25,11 @@ function createRecipe(){
   name: document.getElementById("name").value,
   description: document.getElementById("description").value,
   ingredients: {
-    ingredient1: document.getElementsByName("ingredient")[0].value,
-    ingredient2: document.getElementsByName("ingredient")[1].value,
-    ingredient3: document.getElementsByName("ingredient")[2].value,
-    ingredient4: document.getElementsByName("ingredient")[3].value,
-    ingredient5: document.getElementsByName("ingredient")[4].value
+    ingredient1: document.getElementsByName("ingredients")[0].value,
+    ingredient2: document.getElementsByName("ingredients")[1].value,
+    ingredient3: document.getElementsByName("ingredients")[2].value,
+    ingredient4: document.getElementsByName("ingredients")[3].value,
+    ingredient5: document.getElementsByName("ingredients")[4].value
     }  
   }
   var template = Handlebars.compile(document.getElementById("recipe-template").innerHTML);
@@ -36,24 +41,39 @@ function displayEditForm() {
   var recipe = {
   name: document.getElementById("name").innerHTML,
   description: document.getElementById("description").innerHTML,
+  submit: "updateRecipe();",
   ingredients: {
-    ingredient1: document.getElementsByName("ingredient")[0].innerHTML,
-    ingredient2: document.getElementsByName("ingredient")[1].innerHTML,
-    ingredient3: document.getElementsByName("ingredient")[2].innerHTML,
-    ingredient4: document.getElementsByName("ingredient")[3].innerHTML,
-    ingredient5: document.getElementsByName("ingredient")[4].innerHTML
+    ingredient1: document.getElementsByName("ingredients")[0].innerHTML,
+    ingredient2: document.getElementsByName("ingredients")[1].innerHTML,
+    ingredient3: document.getElementsByName("ingredients")[2].innerHTML,
+    ingredient4: document.getElementsByName("ingredients")[3].innerHTML,
+    ingredient5: document.getElementsByName("ingredients")[4].innerHTML
     }  
   }
-  debugger
     var template = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML);
   var result = template(recipe);
   document.getElementById("main").innerHTML = result;
 
 }
 
-Handlebars.registerPartial('recipeDetailsPartial', document.getElementById("recipe-details-partial").innerHTML)
+function updateRecipe(){
+   var recipe = {
+  name: document.getElementById("name").value,
+  description: document.getElementById("description").value,
+  ingredients: {
+    ingredient1: document.getElementsByName("ingredients")[0].value,
+    ingredient2: document.getElementsByName("ingredients")[1].value,
+    ingredient3: document.getElementsByName("ingredients")[2].value,
+    ingredient4: document.getElementsByName("ingredients")[3].value,
+    ingredient5: document.getElementsByName("ingredients")[4].value
+    }  
+  }
+    var template = Handlebars.compile(document.getElementById("recipe-template").innerHTML);
+  var result = template(recipe);
+  document.getElementById("main").innerHTML = result;
+  
+}
 
-Handlebars.registerHelper('displayIngredient', function() {return new Handlebars.SafeString(this)})
 
 document.addEventListener("DOMContentLoaded", function(event) {
   init()
