@@ -7,8 +7,36 @@
     <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
   </head>
   <body>
+    
     <main id="main">
     </main>
+    
+    <script id="recipe-form-template" type="text/x-handlebars-template">
+      <form onsubmit="createRecipe();">
+        Name:<input type="text" id="name" value={{name}}><br>
+        Description:<input type="textarea" id="description" value={{description}}><br>
+        {{#each ingredients}}
+          Ingredient:<input type="text" name="ingredient" value={{this}}><br> 
+        {{/each }}
+        <input type="submit">
+      </form>      
+    </script>
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+      <p id="name">{{name}}</p>
+      <a href="#" onclick="displayEditForm();">Edit Recipe</a>
+      <p>{{> recipeDetailsPartial}}</p>
+    </script>
+
+    <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <p id="description">{{description}}</p>
+        <ul>
+          {{#each ingredients }}
+            <li name="ingredient">{{displayIngredient }}</li>
+          {{/each }}
+        </ul>  
+    </script>
+    
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
@@ -17,5 +45,7 @@
     <script src="node_modules/expect/umd/expect.min.js"></script>
     <script>mocha.setup('bdd');</script>
     <script src="test/index-test.js"></script>
+
+
   </body>
 </html>
