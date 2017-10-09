@@ -17,15 +17,15 @@
 
       {{#if recipe }}
         <h1>Edit Recipe</h1>
-        <form id="recipe-form" onSubmit="updateRecipe();return false;"> 
-        Name: <br><input type="text" id="name" value="{{recipe.name}}"><br>
-        Description: <br><input type="text" id="recipeDescription" value="{{recipe.description}}"><br>
+        <form id="recipe-form" onSubmit="updateRecipe({{recipe_count}});return false;"> 
+        Name: <br><input type="text" id="name-{{recipe_count}}" value="{{recipe.name}}"><br>
+        Description: <br><input type="text" id="recipeDescription-{{recipe_count}}" value="{{recipe.description}}"><br>
         Ingredients: <br>
-        <input type="text" name="ingredients" value="{{recipe.ingredients.[0]}}"><br>
-        <input type="text" name="ingredients" value="{{recipe.ingredients.[1]}}"><br>
-        <input type="text" name="ingredients" value="{{recipe.ingredients.[2]}}"><br>
-        <input type="text" name="ingredients" value="{{recipe.ingredients.[3]}}"><br>
-        <input type="text" name="ingredients" value="{{recipe.ingredients.[4]}}"><br>
+        <input type="text" name="ingredients-{{recipe_count}}" value="{{recipe.ingredients.[0]}}"><br>
+        <input type="text" name="ingredients-{{recipe_count}}" value="{{recipe.ingredients.[1]}}"><br>
+        <input type="text" name="ingredients-{{recipe_count}}" value="{{recipe.ingredients.[2]}}"><br>
+        <input type="text" name="ingredients-{{recipe_count}}" value="{{recipe.ingredients.[3]}}"><br>
+        <input type="text" name="ingredients-{{recipe_count}}" value="{{recipe.ingredients.[4]}}"><br>
 
       {{else}}
         
@@ -53,8 +53,8 @@
           <h2>{{name}}</h2>
           {{> recipeDetailsPartial}}
 
-        <div id="edit-container">
-          <a href="#" id="edit_recipe" onclick="displayEditForm();">Edit Recipe</a>
+        <div id="edit-container-{{@key}}">
+          <a href="#" id="edit_recipe" onclick="displayEditForm({{@key}});">Edit Recipe</a>
         </div>
         {{/each}}
     </script>

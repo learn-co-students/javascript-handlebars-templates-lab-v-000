@@ -39,12 +39,13 @@ function createRecipe() {
 	document.getElementById("recipes").innerHTML += Handlebars.compile(document.getElementById("recipe-template").innerHTML)({recipes: recipes.slice(-1)});
 }
 
-function updateRecipe() {
-  var ingredientsNode = document.getElementsByName(`ingredients`);
+function updateRecipe(recipe_number) {
+  console.log("hello");
+  var ingredientsNode = document.getElementsByName(`ingredients-${recipe_number}`);
 
   var editedRecipe = {
-    name: document.getElementById(`name`).value,
-    description: document.getElementById(`recipeDescription`).value,
+    name: document.getElementById(`name-${recipe_number}`).value,
+    description: document.getElementById(`recipeDescription-${recipe_number}`).value,
     ingredients: []
   };
 
@@ -52,20 +53,34 @@ function updateRecipe() {
     editedRecipe["ingredients"].push(ingredientsNode[i].value);
   }
 
-  recipes[0] = editedRecipe;
+  recipes[recipe_number] = editedRecipe;
 
   document.getElementById("recipes").innerHTML = Handlebars.compile(document.getElementById("recipe-template").innerHTML)({recipes: recipes });
 
 }
 
-function displayEditForm(){
-  document.getElementById(`edit-container`).innerHTML = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML)({recipe: recipes[0]});
-  document.getElementById("recipe-form-container").innerHTML = "";
+function displayEditForm(recipe_number){
+  document.getElementById(`edit-container-${recipe_number}`).innerHTML = Handlebars.compile(document.getElementById("recipe-form-template").innerHTML)({recipe_count: recipe_number, recipe: recipes[recipe_number]});
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
   init()
 })
+
+
+var recipes = [{
+	name: "chicken soup",
+  description: 'yummy chicken noodle soup',
+  ingredients: ['chicken','stock', 'noodles', '', '']
+},{
+	name: "cookie",
+  description: 'chocolate flavor cookies',
+  ingredients: ['flour','sugar','choco chips', '', '']
+},{
+	name: "fish",
+  description: 'poached fish',
+  ingredients: ['lemon', 'stock','cod', '', '']
+}];
 
 var recipes = [];
 
