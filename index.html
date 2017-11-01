@@ -8,7 +8,94 @@
   </head>
   <body>
     <main id="main">
+
+
+      <script id="recipe-form-template" type="text/x-handlebars-template">
+      <div style="margin-left:30px" >
+      <form>
+      <h1>{{name}}</h1>
+      <h2>{{description}}</h2>
+      
+      Recipe Name:<br><br>
+      <input type="text" id="recipe-name" value={{name}}><br><br>
+      <div id="desc">
+        Description:<br><br>
+        <input type="text" id="description" value={{description}}><br><br>
+      </div>
+      <div id="ingredients">
+        Ingredients:<br><br>
+        <input type="text" name="ingredient"><br><br>
+        <input type="text" name="ingredient"><br><br>
+        <input type="text" name="ingredient"><br><br>
+        <input type="text" name="ingredient"><br><br>
+        <input type="text" name="ingredient"><br><br>
+      </div>
+      <button type="button" id="submit-button" onclick="createRecipe();">Create Recipe</button>
+      </form>
+      </div>
+      </script>
+
+      <script id="recipe-template" type="text/x-handlebars-template">
+      <div style="margin-left:50px" >
+        <h2>Recipe Name: {{name}}</h2>
+        <a href="#" onclick="editRecipe()">Edit Recipe</a>
+      </div>
+      </script>
+      
+      <script id="recipe-details-partial" type="text/x-handlebars-template">
+      <div>
+        <h3>Description: {{description}}</h3>
+      </div>
+      <div>
+        {{#each ingredients}}
+        {{this}}
+        {{/each}}
+      </div>
+      </script>
+      
+<script id="main-template" type="text/x-handlebars-template">
+  {{> namePartial }}
+</script>
+<script id="partial-template" type="text/x-handlebars-template">
+  <div>{{ name }}</div>
+</script>
+
+
+  {{> userMessage tagName="h1" }}
+
+
+
+
+
+
+
+
+
+     
+
     </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" onload="loadForm()"></script>
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
     <script src="index.js"></script>
     <!-- Open this file and call `mocha.run()` in console to run tests -->
@@ -19,3 +106,5 @@
     <script src="test/index-test.js"></script>
   </body>
 </html>
+
+
