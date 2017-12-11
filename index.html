@@ -13,11 +13,11 @@
       <form id="recipe-form" onsubmit="createRecipe();">
         Name: <input type="text" id="name" name="recipeName"><br>
         Description: <input type="textarea" id="description" name="recipeDescription"><br>
-        Ingredient 1:<input type="text" name="ingredients"><br>
-        Ingredient 2:<input type="text" name="ingredients"><br>
-        Ingredient 3:<input type="text" name="ingredients"><br>
-        Ingredient 4:<input type="text" name="ingredients"><br>
-        Ingredient 5:<input type="text" name="ingredients"><br>
+        Ingredient 1:<input type="text" id="ingredientName" name="ingredients"><br>
+        Ingredient 2:<input type="text" id="ingredientName" name="ingredients"><br>
+        Ingredient 3:<input type="text" id="ingredientName" name="ingredients"><br>
+        Ingredient 4:<input type="text" id="ingredientName" name="ingredients"><br>
+        Ingredient 5:<input type="text" id="ingredientName" name="ingredients"><br>
         <input type="submit" value="Submit">
       </form>
     </script>
@@ -25,7 +25,7 @@
       <header><h2>{{name}}</h2></header>
       <p>{{description}}</p>
       {{#each ingredients}}
-        <h3>{{ingredient}}<h3>
+        <h3>{{ingredientName}}<h3>
       {{/each}}
     </script>
     <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
