@@ -24,15 +24,6 @@ function displayEditForm() {
 function init() {
   //put any page initialization/handlebars initialization here
 
-  var recipe = {
-  description: 'yummy chicken noodle soup',
-  ingredients: [
-    {quantity: "1 cup", name: 'chicken'},
-    {quantity: "3 nanoliters", name: 'stock'},
-    {quantity: "12", name: 'noodles'}
-  ]
-}
-
   Handlebars.registerHelper('displayIngredient', function() {
     if(this.name === "ingredients") {
       return new Handlebars.SafeString(this.name)
